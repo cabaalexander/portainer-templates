@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx-proxy-manager
+    hostname: nginx-proxy-manager
+    environment:
+      X_FRAME_OPTIONS: "sameorigin"
+    dns:
+      - 10.0.0.128
+      - 1.1.1.1
+    restart: unless-stopped
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    networks:
+      default:
+        ipv4_address: 10.0.0.130
+
+networks:
+    default:
+        external:
+            name: macvlan.network

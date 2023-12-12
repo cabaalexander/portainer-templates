@@ -1,0 +1,16 @@
+version: '2.1'
+
+services:
+  duckdns:
+    image: lscr.io/linuxserver/duckdns:latest
+    container_name: duckdns
+    environment:
+      - PUID=1000 #optional
+      - PGID=1000 #optional
+      - TZ='America/Santo_Domingo'
+      - SUBDOMAINS=<tktk>
+      - TOKEN=<tktk>
+      - LOG_FILE=false #optional
+    volumes:
+      - ./duckdns/config:/config #optional
+    restart: unless-stopped
